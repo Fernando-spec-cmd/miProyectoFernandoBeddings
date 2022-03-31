@@ -1,16 +1,22 @@
 import React from "react";
-import NavBar from "./components/NavBar";
+import { NavBar } from "./components/NavBar";
 import { ItemListContainer } from "./components/containers/ItemListContainer";
-import { ItemCount } from "./components/ItemCount";
 
-const App = () =>{
-  return(
-    <>
-    <NavBar/>
-    <ItemListContainer greetings= "Sólo se pueden comprar 6 unidades"/>
-    <ItemCount/>
-    </>
-  )
-}
+const App = () => {
+  const name = "Fernando";
 
-export default App
+  return (
+    <div style={estilo}>
+      <NavBar nombre={name} />
+      <ItemListContainer greetings={"Licorería"} />
+    </div>
+  );
+};
+export default App;
+
+const estilo = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center"
+};
