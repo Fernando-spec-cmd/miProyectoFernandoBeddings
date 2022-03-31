@@ -1,24 +1,24 @@
 import React, {useState} from "react";
 
-export const ItemCount = () => {
+export const ItemCount = ({stock, inicial, onAdd}) => {
 
-    const [numeroDeItems, setContador] = useState(0);
+    const [numeroDeItems, setContador] = useState(inicial);
 
     const sumar = () => {
-        setContador(numeroDeItems + 1);
+        if(numeroDeItems < stock) setContador(numeroDeItems + 1);
     };
     const quitar = () => {
-        setContador(numeroDeItems - 1);
+        if(numeroDeItems > 0) setContador(numeroDeItems - 1);
     };
-    const vaciar = () => {
-        setContador(0);
+    const agregar = () => {
+        if(numeroDeItems > 0) onAdd(numeroDeItems);
     };
     return(
-        <>
-        <h1>{numeroDeItems}</h1>
-        <button disabled={numeroDeItems > 5} onClick={sumar}>+</button>
-        <button disabled={numeroDeItems < 1} onClick={quitar}>-</button>
-        <button onClick={vaciar}>Vaciar carro</button>
-        </>
-    )
+        <div>
+        <button onClick={sumar}>+</button>
+        <span>{numeroDeItems}</span>
+        <button onClick={quitar}>-</button>
+        <button onClick={agregar}>Agregar al Carro</button>
+        </div>
+    );
 };
