@@ -1,29 +1,35 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Nav} from 'react-bootstrap';
-import {Navbar} from 'react-bootstrap';
-import {Container} from 'react-bootstrap';
+import estilo from "./EstiloNavBar";
 import { CartWidget } from "./cartwidget/CartWidget";
 
-const NavBar = () =>{
-    return(
-        <>
-  <Navbar bg="primary" variant="dark">
-    <Container>
-    <Navbar.Brand href="#home">Logo de la Empresa</Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="#cervezas">Cervezas</Nav.Link>
-      <Nav.Link href="#whisky">Whisky</Nav.Link>
-      <Nav.Link href="#vinos">Vinos</Nav.Link>
-    </Nav>
-    </Container>
-    <CartWidget/>
-  </Navbar>
-  
-        </>
+export const NavBar = ({nombre}) =>{
+    const categorias = [
+      { nombre: "Whisky", route: "#", id: 1},
+      { nombre: "Tequila", route: "#", id: 2},
+      { nombre: "Vodka", route: "#", id: 3},
+      { nombre: "Gin", route: "#", id: 4}
+    ];
 
-    )
+  return(
+    <div style = {estilo.contenedor}>
+      <div style={estilo.branchContainer}>
+        
+        <h1 style={estilo.titulo}>Bienvenido {nombre}</h1>
+      </div>
+      <div style={estilo.links}>
+        <nav>
+          {categorias.map((element) => {
+            return (
+              <a style={estilo.link} key={element.id} href={element.route}>
+                {element.nombre}
+              </a>
+            );
+          })}
+        </nav>
+        <CartWidget/>
+      </div>
+    </div>
 
-}
+    );
 
-export default NavBar
+};
